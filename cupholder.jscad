@@ -8,6 +8,8 @@ const getParameterDefinitions = () => {
     {name: 'cupholderOuterDiameter', caption: 'Outer width of cupholder:', type: 'float', initial: 30},
     {name: 'wallThickness', caption: 'Wall Thickness:', type: 'float', initial: 2},
     {name: 'cupholderHeight', caption: 'Cupholder height:', type: 'float', initial: 30},
+    {name: 'legLength', caption: 'Leg Length:', type: 'float', initial: 80},
+    {name: 'legHeight', caption: 'Leg Height (and width):', type: 'float', initial: 5},
    ];
 };
 
@@ -23,8 +25,8 @@ const main = (params) => {
 
 const makeLegs = (params) => {
   return union(
-    translate([0, 0, -params.cupholderHeight / 2.0], cuboid({size: [5, 80, 5]})),
-    translate([0, 0, -params.cupholderHeight / 2.0], cuboid({size: [80, 5, 5]})),
+    translate([0, 0, -params.cupholderHeight / 2.0], cuboid({size: [params.legHeight, params.legLength, params.legHeight]})),
+    translate([0, 0, -params.cupholderHeight / 2.0], cuboid({size: [params.legLength, params.legHeight, params.legHeight]})),
   );
 }
 
